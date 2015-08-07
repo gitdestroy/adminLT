@@ -81,6 +81,13 @@ abstract class DefaultView extends HTMLView
     protected function createTitle(){
         
         $div = new Tag("div",['class'=>'navbar-header']);   
+        
+        $button = new Tag("button",['type'=>'button', 'class'=>'navbar-toggle', 'data-toggle'=>'collapse', 'data-target'=>'.navbar-ex1-collapse']);
+        $button->add(new Tag("span",['class'=>'sr-only'],"Toggle navigation"));
+        $button->add(new Tag("span",['class'=>'icon-bar']));
+        $button->add(new Tag("span",['class'=>'icon-bar']));
+        $button->add(new Tag("span",['class'=>'icon-bar']));
+        $div->add($button);
         $div->add(new Tag("a",['class'=>"navbar-brand", 'href'=>'index.html'],  $this->setHeaderTitle()));
         return $div;
     }
