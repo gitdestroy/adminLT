@@ -15,18 +15,16 @@ class SiteController extends WebController
     protected function onBeforeActionExecution($action, $parameters)
     {
         
-        if (! $this->getSession ()->isStarted() ) {
-            $this->getSession()->start();
-        }
+//        if (! $this->getSession ()->isStarted() ) {
+//            $this->getSession()->start();
+//        }
         
-        $executeAccion = $this->getSession()->sessionId;
+        $executeAccion = ($this->getSession()->isStarted() && isset($this->getSession()->sessionId));
         
-        if ( empty($executeAccion)) {
+        if (!$executeAccion) {
             $response = new RedirectResponse("/");
             $response->send();
         }
-        
-        
         return $executeAccion;
     }
     

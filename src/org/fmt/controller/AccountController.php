@@ -2,24 +2,17 @@
 
 namespace org\fmt\controller;
 
-use NeoPHP\web\WebController;
 
 /**
  * @route (path="account")
  */
-class AccountController extends WebController
-{
-    public function onBeforeActionExecution ($action, $params)
-    {
-        //$this->getSession()->destroy();
-        return true;
-    }
-    
+class AccountController extends SiteController
+{    
     /**
      * @routeAction (action="prueba")
      */
     public function testAction(){
-        echo"correcto!!";
+        echo "correcto!!";
     }
     
 }
