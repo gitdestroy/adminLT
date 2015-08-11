@@ -14,30 +14,35 @@ use stdClass;
 class SessionController extends WebController
 {
     /**
-     * @routeAction (method="PUT")
+     * @routeAction  (method="PUT")
      */
     public function createSession ($username, $password)
-    {
+    {   
         $response = new Response();
         $responseObject = new stdClass();
+        
         
         try
         {
             $this->getSession()->destroy();
             $sessionId = false;
             $user = UsersManager::getInstance()->getUserByUsernameAndPassword($username, $password);
-            if ($user != null)
+            
+            if (!empty($user) )
             {
+                
                 $this->getSession()->start();
+                
                 $this->getSession()->sessionId = session_id();
                 $this->getSession()->sessionName = session_name();
                 $this->getSession()->userId = $user->getId();
                 $this->getSession()->firstname = $user->getFirstname();
-                $this->getSession()->lastname = $user->getLastname();
-                $this->getSession()->type = $user->getType()->getId();
+//                $this->getSession()->lastname = $user->getLastname();
+//                $this->getSession()->type = $user->getType()->getId();
                 $responseObject->success = true;
                 $responseObject->sessionId = $this->getSession()->getId();
                 $response->setContent(json_encode($responseObject));
+                
             }
             else
             {

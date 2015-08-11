@@ -2,11 +2,11 @@
 
 namespace org\fmt\manager;
 
-use NeoPHP\mvc\Manager;
+use NeoPHP\mvc\ModelManager;
 use NeoPHP\sql\Connection;
 use org\fmt\connection\ProductionConnection;
 
-class MainManager extends Manager
+class MainManager extends ModelManager
 {
     /**
      * Obtiene la conexión principal de manejador

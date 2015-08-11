@@ -4,6 +4,7 @@ namespace org\fmt\controller;
 
 use NeoPHP\web\http\RedirectResponse;
 use NeoPHP\web\WebController;
+use org\fmt\model\User;
 use org\fmt\view\DashboardView;
 
 /**
@@ -21,7 +22,12 @@ class SiteController extends WebController
      */
     public function showDashboard ()
     {
-        return new DashboardView();
+        $this->getSession()->start();
+        $user = new User();
+        $user->setFirstname($this->getSession()->firstname);
+        $dV = new DashboardView();
+        $dV->setUser($user);
+        return $dV;
     }
     
     /**

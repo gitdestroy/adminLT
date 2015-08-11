@@ -2,13 +2,13 @@
 
 namespace org\fmt\connection;
 
-use NeoPHP\sql\PostgreSQLConnection;
+use NeoPHP\sql\MySqlConnection;
 
-class ProductionConnection extends PostgreSQLConnection
+class ProductionConnection extends MySqlConnection
 {
     public function getDatabaseName()
     {
-        return "tennisfederation";
+        return "adminfuenn";
     }
 
     public function getHost()
@@ -18,12 +18,12 @@ class ProductionConnection extends PostgreSQLConnection
     
     public function getUsername ()
     {
-        return "postgres";
+        return "";
     }
     
     public function getPassword ()
     {
-        return "tuvieja.com";
+        return "";
     }
 }
 
