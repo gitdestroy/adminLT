@@ -66,7 +66,7 @@ abstract class DefaultView extends HTMLView {
                                 <a href="#" class="navbar-brand"><span>'.$this->getApplication()->getName().'</span></a>
                             </div>
                             <div class="sidebar-collapse" id="sidebar-collapse">
-                                <i class="collapse-icon fa fa-bars"></i>
+                                <i class="collapse-icon glyphicon glyphicon-th-list"></i>
                             </div>
                             <div class="navbar-header pull-right">
                                 <div class="navbar-account">
@@ -122,6 +122,13 @@ abstract class DefaultView extends HTMLView {
 //                        </div>
 //                    </div>
 //                </div>';
+        
+        
+//        <ul class="nav sidebar-menu">
+//                                <li>
+//                                    <a href="index.html"><i class="menu-icon glyphicon glyphicon-home"></i><span class="menu-text"> Dashboard </span></a>
+//                                </li>
+//                            </ul>
     }
 
     protected function createMainContent() {
@@ -130,15 +137,9 @@ abstract class DefaultView extends HTMLView {
                     <div class="page-container">
                         <div class="page-sidebar" id="sidebar">
                             <div class="sidebar-header-wrapper">
-                                    <input type="text" class="searchinput" />
-                                    <i class="searchicon fa fa-search"></i>
-                                    <div class="searchhelper">Search Reports, Charts, Emails or Notifications</div>
-                                </div>
-                            <ul class="nav sidebar-menu">
-                                <li>
-                                    <a href="index.html"><i class="menu-icon glyphicon glyphicon-home"></i><span class="menu-text"> Dashboard </span></a>
-                                </li>
-                            </ul>
+                                    <i class="searchicon glyphicon glyphicon-th-large"></i>
+                            </div>
+                            '.$this->addMenu ().'
                         </div>
                         <div class="page-content">
                             <div class="page-breadcrumbs">
@@ -325,6 +326,8 @@ abstract class DefaultView extends HTMLView {
 //
 //                    </div>';
     }
+    
+   
 
     protected function createTitle() {
 
@@ -344,7 +347,7 @@ abstract class DefaultView extends HTMLView {
 
     protected abstract function createContent();
 
-    protected abstract function setHeaderTitle();
+     protected  abstract function addMenu();
 }
 
 ?>

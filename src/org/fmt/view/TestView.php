@@ -3,9 +3,9 @@
 namespace org\fmt\view;
 
 use NeoPHP\web\html\Tag;
+use org\fmt\view\component\Form;
 use org\fmt\view\component\Menu;
 use org\fmt\view\component\MenuItem;
-use org\fmt\view\component\Navegador;
 
 class TestView extends DefaultView{
     
@@ -111,28 +111,35 @@ class TestView extends DefaultView{
             </ul>';
         
     }
-
-    protected function setHeaderTitle ()
+    
+    protected function setLogin()
     {
-        return "Admin";
+        $form = new Form(['class'=>'navbar-form navbar-right']);
+        
+        $componentUser = new Tag('div',['class'=>'form-group']);
+        $componentUser->add(new Tag('input',['type'=>'text', 'name'=>'username', 'placeholder'=>'Usuario', 'class'=>'form-control']));
+        $componentPass = new Tag('div',['class'=>'form-group']);
+        $componentPass->add(new Tag('input',['type'=>'password', 'name'=>'password', 'placeholder'=>'Contraseña', 'class'=>'form-control']));
+        
+        
+        $form->addComponent($componentUser);
+        $form->addComponent($componentPass);
+        $form->addComponent(new Tag ( 'button',['type'=>'button', 'name'=>'loginbutton', 'class'=>'btn btn-primary'] ,'Login'));
+        
+        return $form;
     }
 
-    protected function setLogin(){
+    protected function addMenu ()
+    {
         
-        return '
-        <form class="navbar-form navbar-right">
-            <div class="form-group">
-                <input type="text" name="username" placeholder="Usuario" class="form-control">
-            </div>
-            <div class="form-group">
-                <input type="password" name="password" placeholder="Contraseña" class="form-control">
-            </div>
-            <button type="button" name="loginbutton" class="btn btn-primary">Ingresar</button>
-        </form>';
+        $menu = new Menu(['class'=>'nav sidebar-menu']);
+        $menu->addMenuItem(new MenuItem('<i class="menu-icon glyphicon glyphicon-home"></i><span class="menu-text"> Home page </span>', ['href'=>'index.html']));
+        $menu->addMenuItem(new MenuItem('<i class="menu-icon glyphicon glyphicon-trash"></i><span class="menu-text"> Dashboard </span>', ['href'=>'index.html']));
+        
+        return $menu;
         
     }
-    
-    
+
 }
 
 

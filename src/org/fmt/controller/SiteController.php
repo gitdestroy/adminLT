@@ -14,7 +14,20 @@ class SiteController extends WebController
 {
     protected function onBeforeActionExecution($action, $parameters)
     {
-        return parent::onBeforeActionExecution($action, $parameters);
+        
+        if (! $this->getSession ()->isStarted() ) {
+            $this->getSession()->start();
+        }
+        
+        $executeAccion = $this->getSession()->sessionId;
+        
+        if ( empty($executeAccion)) {
+            $response = new RedirectResponse("/");
+            $response->send();
+        }
+        
+        
+        return $executeAccion;
     }
     
     /**
