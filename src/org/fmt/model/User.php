@@ -37,6 +37,37 @@ class User extends Model
     /**
      * @column (columnName="lastname")
      */
+    private $lastname;
+    
+    /**
+     * @column (columnName="document")
+     */
+    private $document;
+    
+    /**
+     * @column (columnName="telephone")
+     */
+    private $telephone;
+    
+    /**
+     * @column (columnName="mobile")
+     */
+    private $mobile;
+    
+    /**
+     * @column (columnName="address")
+     */
+    private $address;
+    
+    /**
+     * @column (columnName="provinceid", relatedTableName="province")
+     */
+    private $provinceid;
+    
+    /**
+     * @column (columnName="countryid", relatedTableName="country")
+     */
+    private $countryid;
     
     public function getId()
     {
@@ -86,6 +117,76 @@ class User extends Model
     public function setFirstname($firstname)
     {
         $this->firstname = $firstname;
+    }
+    
+    function getLastname ()
+    {
+        return $this->lastname;
+    }
+
+    function getDocument ()
+    {
+        return $this->document;
+    }
+
+    function getTelephone ()
+    {
+        return $this->telephone;
+    }
+
+    function getMobile ()
+    {
+        return $this->mobile;
+    }
+
+    function getAddress ()
+    {
+        return $this->address;
+    }
+
+    function getProvinceid ()
+    {
+        return $this->provinceid;
+    }
+
+    function getCountryid ()
+    {
+        return $this->countryid;
+    }
+
+    function setLastname ( $lastname )
+    {
+        $this->lastname = $lastname;
+    }
+
+    function setDocument ( $document )
+    {
+        $this->document = $document;
+    }
+
+    function setTelephone ( $telephone )
+    {
+        $this->telephone = $telephone;
+    }
+
+    function setMobile ( $mobile )
+    {
+        $this->mobile = $mobile;
+    }
+
+    function setAddress ( $address )
+    {
+        $this->address = $address;
+    }
+
+    function setProvinceid ( $provinceid )
+    {
+        $this->provinceid = $provinceid;
+    }
+
+    function setCountryid ( $countryid )
+    {
+        $this->countryid = $countryid;
     }
 }
 
