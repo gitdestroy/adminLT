@@ -38,7 +38,7 @@ class MenuItem extends Tag
         $this->title = $title;
     }
     
-    public function compile ()
+    public function toHtml ( $offset = 0 )
     {
         if (!empty($this->title)) {
             $this->add (new Tag("a", $this->titleAtributes, $this->title));
@@ -46,6 +46,7 @@ class MenuItem extends Tag
         if (!empty($this->menu)) {
             $this->add($this->menu);
         }
+        return parent::toHtml ( $offset );
     }
 }
 

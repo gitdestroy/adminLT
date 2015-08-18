@@ -28,6 +28,7 @@ abstract class DefaultView extends HTMLView {
         $this->addStyleFile($this->getBaseUrl() . "res/assets/css/typicons.min.css");
         $this->addStyleFile($this->getBaseUrl() . "res/assets/css/demo.min.css");
         $this->addStyleFile($this->getBaseUrl() . "res/assets/css/animate.min.css");
+        $this->addStyleFile($this->getBaseUrl() . "res/assets/css/inskey.css");
         $this->addStyleFile("http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,600,700,300");
 
         $this->htmlTag->add('<link id="bootstrap-rtl-link" href="" rel="stylesheet" />');

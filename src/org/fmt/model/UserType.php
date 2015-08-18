@@ -9,6 +9,8 @@ use NeoPHP\mvc\Model;
  */
 class UserType extends Model 
 {
+    //CREATE TABLE usertype (usertypeid INT NOT NULL PRIMARY,description VARCHAR(50));
+
     const USERTYPE_ADMINISTRATOR = 1;
     const USERTYPE_ORGANIZER = 2;
     const USERTYPE_PLAYER = 3;

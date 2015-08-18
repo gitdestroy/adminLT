@@ -19,12 +19,13 @@ class Menu extends Tag
         $this->menuItems[] = $item;
     }
     
-    public function compile ()
+    public function toHtml ( $offset = 0 )
     {
         foreach ($this->menuItems as $menuItem)
         {
             $this->add($menuItem); 
         }
+        return parent::toHtml ( $offset );
     }
 }
 

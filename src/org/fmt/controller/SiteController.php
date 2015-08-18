@@ -19,13 +19,14 @@ class SiteController extends WebController
 //            $this->getSession()->start();
 //        }
         
-        $executeAccion = ($this->getSession()->isStarted() && isset($this->getSession()->sessionId));
-        
-        if (!$executeAccion) {
-            $response = new RedirectResponse("/");
-            $response->send();
-        }
-        return $executeAccion;
+//        $executeAccion = ($this->getSession()->isStarted() && isset($this->getSession()->sessionId));
+//        
+//        if (!$executeAccion) {
+//            $response = new RedirectResponse("/");
+//            $response->send();
+//        }
+//        return $executeAccion;
+        return true;
     }
     
     /**

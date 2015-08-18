@@ -99,7 +99,13 @@ class TestView extends DefaultView{
     protected function createContent ()
     {
         
-        return '<pre>hola</pre>';
+        $form = new Form(['class'=>"rawStyle"]);
+        $form->addElement("text", "firstname", "Nombre");
+        $form->addElement("text", "lastname", "Apellido");
+        $form->addElement("text", "username", "Usuario");
+        $form->addElement("password", "password", "Contraseña");
+        
+        return $form;
         
         
     }
@@ -137,8 +143,12 @@ class TestView extends DefaultView{
         $menu->addMenuItem(new MenuItem('<i class="menu-icon glyphicon glyphicon-trash"></i><span class="menu-text"> Dashboard </span>', ['href'=>'index.html']));
         
         return $menu;
-        
     }
+    
+    
+    
+    
+    
 
 }
 

@@ -8,45 +8,50 @@ class Form extends Tag
 {
     private $components = [];
     
-    public function __construct (array $attributes = null,$accion= null,$method="POST")
+    public function __construct (array $attributes = null,$accion= "#",$method="POST")
     {
         parent::__construct("form", $attributes);
-        $this->setAttributes(array_merge($attributes , ['accion'=>$accion,'method'=>$method]));
+//        $this->add(new Tag ( "h4",[],"formulario Registro"));
+        if ( !empty($attributes) ){
+            $this->setAttributes(array_merge($attributes , ['role'=>'form','accion'=>$accion,'method'=>$method]));
+        } else {
+            $this->setAttributes(['role'=>'form','accion'=>$accion,'method'=>$method]);
+        }
+        
     }
-    
-    public function addComponent(Tag $component){
-        $this->components[] = $component;
-    }
-
-    public function compile ()
-    {
+    public function toHtml ( $offset = 0 )
+    {   
         foreach ($this->components as $component)
         {
             $this->add($component); 
         }
+        return parent::toHtml ( $offset );
     }
-    
+
+    public function addComponent(Tag $component){
+        $this->components[] = $component;
+    }
+
     public function addElement($tag,$name,$title){
         
         $component= null;
         
-        switch ($name){
+        switch ($tag){
             
             case "text":
-                $div = new Tag('div',['class'=>'form-group']);
-                $div->add(new Tag('label',['For'=>'email']));
-                $div->add(new Tag('input',['type'=>"$tag",'class'=>'form-control','id'=>"$name",'name'=>"$name"],$title));
-                
-//                <div class="form-group">
-//			< f>Email</label>
-//			<input type="email" class="form-control" id="email" placeholder="Tu email" name="email">
-//			</div>
+            case "password":
+                $div = new Tag('div',['class'=>'form-group col-xs-12  center-block']);
+                $div->add(new Tag('label',['For'=>"sminput"],$title));
+                $div->add(new Tag('input',['type'=>"$tag",'class'=>'form-control input-sm "center-block','id'=>"$name",'name'=>"$name"]));
                 $component = $div;
                 break;
             
         }
-        
-        return $component;
+        $divRow =  new Tag("div",['class'=>'row']);
+        $divRow->add($component);
+        $this->components[] =$divRow ;
+        return $this;
+//        $this->addComponent($component);
     }
 }
 

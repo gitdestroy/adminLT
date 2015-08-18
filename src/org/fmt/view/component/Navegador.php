@@ -19,13 +19,14 @@ class Navegador extends Tag
         $this->menu[] = $menu;
     }
 
-        public function compile ()
+    public function toHtml ( $offset = 0 )
     {
         if(!empty($this->menu)){
             foreach (  $this->menu as $dMenu ){            
                 $this->add($dMenu);
             }
         }
+        return parent::toHtml ( $offset );
     }
 
     

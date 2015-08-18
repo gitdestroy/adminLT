@@ -9,6 +9,7 @@ use NeoPHP\mvc\Model;
  */
 class User extends Model
 {  
+    //CREATE TABLE employees (userid INT NOT NULL PRIMARY KEY AUTO_INCREMENT,username VARCHAR(20) NOT NULL,password VARCHAR(20) NOT NULL,usertypeid INT NOT NULL,firstname VARCHAR(20) NOT NULL,lastname VARCHAR(20) NOT NULL,document VARCHAR(20) NOT NULL,telephone VARCHAR(20) NOT NULL,mobile VARCHAR(20) NOT NULL,address VARCHAR(50) NOT NULL,provinceid INT,countryid INT)
     /**
      * @column (columnName="userid", id=true)
      */

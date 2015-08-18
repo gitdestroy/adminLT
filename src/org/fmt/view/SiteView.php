@@ -43,9 +43,6 @@ class SiteView extends DefaultView{
     protected function createContent() {
         
     }
-
-
-
 }
 
 ?>
