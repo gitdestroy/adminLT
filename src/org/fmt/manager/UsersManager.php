@@ -31,6 +31,12 @@ class UsersManager extends MainManager
     }
     
     
+    public function setUser($user){
+        $userTable = $this->getConnection()->getTable("user");
+        return $userTable->insert($user);
+    }
+    
+    
 }
 
 ?>

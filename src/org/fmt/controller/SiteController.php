@@ -49,6 +49,37 @@ class SiteController extends WebController
     {
         return new RedirectResponse("/");
     }
+    
+   /**
+     * @routeAction (action="setuser") 
+     */
+    public function insertUser ( $username, $password,$type,$firstname,$lastname,$document,$telephone,$mobile,$address,$provinceid,$countryid )
+    {
+        
+        echo '<pre>';
+        print_r ($_REQUEST);
+        echo '</pre>';
+        
+        echo $username;
+        exit;
+        
+//        $user = new User();
+//        $user->setUsername($username);
+//        $user->setPassword($password);
+//        $user->setType((!empty($type))? $type: 3);
+//        $user->setFirstname($firstname);
+//        $user->setLastname($lastname);
+//        $user->setDocument($document);
+//        $user->setTelephone($telephone);
+//        $user->setMobile($mobile);
+//        $user->setAddress($address);
+//        $user->setProvinceid($provinceid);
+//        $user->setCountryid($countryid);
+//        $insert = UsersManager::getInstance()->setUser($user);
+        
+    }
+    
+    
 }
 
 ?>

@@ -3,6 +3,7 @@
 namespace org\fmt\controller;
 
 use org\fmt\manager\UsersManager;
+use org\fmt\view\SingUpView;
 
 
 /**
@@ -15,9 +16,19 @@ class AccountController extends SiteController
      */
     public function testAction(){
         
-        $user = UsersManager::getInstance()->getUser("yamij","1234");
+//        $user = UsersManager::getInstance()->getUser("yamij","1234");
         
         echo "correcto!!";
+    }
+    
+    
+     /**
+     * @routeAction (action="singup")
+     */
+    public function singupAction(){
+        
+        $view = new SingUpView();
+        return $view;
     }
     
 }

@@ -156,22 +156,7 @@ abstract class DefaultView extends HTMLView {
                                 </ul>
                             </div>
                             <div class="page-header position-relative">
-                                <div class="header-title">
-                                    <h1>
-                                        Blank Page
-                                    </h1>
-                                </div>
-                                <div class="header-buttons">
-                                    <a class="sidebar-toggler" href="#">
-                                        <i class="fa fa-arrows-h"></i>
-                                    </a>
-                                    <a class="refresh" id="refresh-toggler" href="">
-                                        <i class="glyphicon glyphicon-refresh"></i>
-                                    </a>
-                                    <a class="fullscreen" id="fullscreen-toggler" href="#">
-                                        <i class="glyphicon glyphicon-fullscreen"></i>
-                                    </a>
-                                </div>
+                                '.$this->createBarPage().'
                             </div>
                             <div class="page-body">
                                 '.$this->createContent().'
@@ -343,12 +328,14 @@ abstract class DefaultView extends HTMLView {
 //        $div->add(new Tag("a", ['class' => "navbar-brand", 'href' => 'index.html'], $this->setHeaderTitle()));
 //        return $div;
     }
-
+    
     protected abstract function createHeaderContent();
 
     protected abstract function createContent();
 
-     protected  abstract function addMenu();
+    protected abstract function createBarPage();
+
+    protected abstract function addMenu();
 }
 
 ?>
