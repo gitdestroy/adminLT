@@ -144,11 +144,11 @@ class TestView extends DefaultView{
         
         return $menu;
     }
-    
-    
-    
-    
-    
+
+    protected function createBarPage ()
+    {
+        return "";
+    }
 
 }
 

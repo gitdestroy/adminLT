@@ -31,9 +31,8 @@ class UsersManager extends MainManager
     }
     
     
-    public function setUser($user){
-        $userTable = $this->getConnection()->getTable("user");
-        return $userTable->insert($user);
+    public function setUser(  User $user){
+        $this->getConnection()->insertEntity($user);
     }
     
     

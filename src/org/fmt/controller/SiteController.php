@@ -4,7 +4,9 @@ namespace org\fmt\controller;
 
 use NeoPHP\web\http\RedirectResponse;
 use NeoPHP\web\WebController;
+use org\fmt\manager\UsersManager;
 use org\fmt\model\User;
+use org\fmt\model\UserType;
 use org\fmt\view\DashboardView;
 
 /**
@@ -56,12 +58,27 @@ class SiteController extends WebController
     public function insertUser ( $username, $password,$type,$firstname,$lastname,$document,$telephone,$mobile,$address,$provinceid,$countryid )
     {
         
-        echo '<pre>';
-        print_r ($_REQUEST);
-        echo '</pre>';
         
-        echo $username;
-        exit;
+        $user = new User();
+        $user->setUsername($username);
+        $user->setPassword($password);
+        $userType = new UserType();
+        if ( !empty($type) ) {
+            $userType->setId($type);
+        } else {
+            $userType->setId(3);
+        }
+        $user->setType($userType);
+        $user->setFirstname($firstname);
+        $user->setLastname($lastname);
+        $user->setDocument($document);
+        $user->setTelephone($telephone);
+        $user->setMobile($mobile);
+        $user->setAddress($address);
+        
+        UsersManager::getInstance()->setUser($user);
+         
+        return "Correcto";
         
 //        $user = new User();
 //        $user->setUsername($username);
