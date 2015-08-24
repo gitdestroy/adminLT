@@ -2,11 +2,40 @@
 
 namespace org\fmt\view;
 
-class PortalView extends DefaultView
+use NeoPHP\web\html\HTMLView;
+
+class PortalView extends HTMLView
 {
     protected function build()
     {
         parent::build();
+        
+        $this->setTitle($this->getApplication()->getName());
+        $this->addMeta(array("http-equiv" => "Content-Type", "content" => "text/html; charset=UTF-8"));
+        $this->addMeta(array("charset" => "utf-8"));
+        $this->addMeta(array("name" => "viewport", "content" => "width=device-width, initial-scale=1.0"));
+
+        $this->addScriptFile($this->getBaseUrl() . "res/assets/js/jquery.min.js");
+        $this->addScriptFile($this->getBaseUrl() . "res/assets/js/bootstrap.min.js");
+        $this->addScriptFile($this->getBaseUrl() . "res/assets/js/slimscroll/jquery.slimscroll.min.js");
+        $this->addScriptFile($this->getBaseUrl() . "res/assets/js/skins.min.js");
+        $this->addScriptFile($this->getBaseUrl() . "res/assets/js/beyond.min.js");
+
+        $this->addStyleFile($this->getBaseUrl() . "res/assets/css/bootstrap.min.css");
+        $this->addStyleFile($this->getBaseUrl() . "res/assets/css/font-awesome.min.css");
+        $this->addStyleFile($this->getBaseUrl() . "res/assets/css/weather-icons.min.css");
+        $this->addStyleFile($this->getBaseUrl() . "res/assets/css/typicons.min.css");
+        $this->addStyleFile($this->getBaseUrl() . "res/assets/css/demo.min.css");
+        $this->addStyleFile($this->getBaseUrl() . "res/assets/css/animate.min.css");
+        $this->addStyleFile($this->getBaseUrl() . "res/assets/css/inskey.css");
+        $this->addStyleFile("http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,600,700,300");
+
+        $this->htmlTag->add('<link id="bootstrap-rtl-link" href="" rel="stylesheet" />');
+        $this->htmlTag->add('<link id="beyond-link" href="' . $this->getBaseUrl() . '/res/assets/css/beyond.min.css" rel="stylesheet" />');
+        $this->htmlTag->add('<link id="skin-link" href="" rel="stylesheet" type="text/css" />');
+        $this->htmlTag->add('<link href="assets/css/font-awesome.min.css" rel="stylesheet" />');
+
+        $this->getBodyTag()->add($this->createContent());
         
         $this->getBodyTag()->add($this->createMessageBox());
         $this->addScript('
@@ -48,8 +77,8 @@ class PortalView extends DefaultView
 
             $("button[name=loginbutton]").click(function(event)
             {
-                clearErrorMessage();
-                disableLoginControls();
+                //clearErrorMessage();
+                //disableLoginControls();
                 var username = $("input[name=username]")[0].value;
                 var password = $("input[name=password]")[0].value;
                 $.ajax("' . $this->getUrl("session/") . '?username=" + username + "&password=" + password,
@@ -108,29 +137,35 @@ class PortalView extends DefaultView
         </div>';
     }
     
-    protected function createHeaderContent()
-    {
-        return '
-        <form class="navbar-form navbar-right">
-            <div class="form-group">
-                <input type="text" name="username" placeholder="Usuario" class="form-control">
-            </div>
-            <div class="form-group">
-                <input type="password" name="password" placeholder="Contraseña" class="form-control">
-            </div>
-            <button type="button" name="loginbutton" class="btn btn-primary">Ingresar</button>
-        </form>';
-    }
-    
     protected function createContent()
     {
-        $content = "";
-        $content .= $this->createCarousel();
-        $content .= $this->createInformationContent();
-        $content .= $this->createFooter();
-        return $content;
+        return '<div class="login-container animated fadeInDown">
+                <div class="loginbox bg-white">
+                    <div class="loginbox-title">Sistema Sitrack.com</div>
+                    <div class="loginbox-social">
+                        <div class="social-title ">Connect with Your Social Accounts</div>
+                    </div>
+                    <div class="loginbox-textbox">
+                        <input type="text" id="username" name="username" class="form-control" placeholder="Email" />
+                    </div>
+                    <div class="loginbox-textbox">
+                        <input type="password" name="password" class="form-control" placeholder="Password" />
+                    </div>
+                    <div class="loginbox-forgot">
+                        <a href="">Olvido su contraseña?</a>
+                    </div>
+                    <div class="loginbox-submit">
+                        <button type="button" name="loginbutton" id="loginbutton" class="btn btn-primary btn-block" >Ingresar</button>
+                    </div>
+                    <div class="loginbox-signup">
+                        <a href="register.html">Sign Up With Email</a>
+                    </div>
+                </div>
+                <div class="logobox">
+                </div>
+            </div>';
     }
-    
+    /*
     protected function createCarousel()
     {
         return '
@@ -159,7 +194,8 @@ class PortalView extends DefaultView
             <a class="right carousel-control" href="#myCarousel" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
         </div>';
     }
-    
+    */
+    /*
     protected function createInformationContent()
     {
         return '
@@ -200,7 +236,8 @@ class PortalView extends DefaultView
             </div>
         </div>';
     }
-    
+    */
+    /*
     protected function createFooter()
     {
         return '
@@ -211,6 +248,8 @@ class PortalView extends DefaultView
             </div>
         </div>';
     }
+     
+     */
 }
 
 ?>

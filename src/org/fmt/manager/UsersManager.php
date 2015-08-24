@@ -12,8 +12,8 @@ class UsersManager extends MainManager
         $userTable = $this->getConnection()->getTable("user");
         $userTable->addWhere("username", "=", $username);
         $userTable->addWhere("password", "=", $password);
-        $user = $userTable->get(User::getClass());
-        return $user[0];
+        $user = $userTable->getFirst(User::getClass());
+        return $user;
     }
     
     public function getUser ($username, $password)

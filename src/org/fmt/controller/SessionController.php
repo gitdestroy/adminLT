@@ -13,7 +13,7 @@ use stdClass;
  */
 class SessionController extends WebController
 {
-    /**
+   /**
      * @routeAction  (method="PUT")
      */
     public function createSession ($username, $password)
@@ -62,6 +62,21 @@ class SessionController extends WebController
         
         return $response;
     }
+    
+    /*
+     * @routeAction  (action="reset", method="PUT")
+     */
+    public function forgetfulnessPassword($email){
+        
+        if ( empty($email) ) {
+            
+        }
+            
+        
+        
+    }
+    
+    
 }
 
 ?>
