@@ -152,7 +152,7 @@ class PortalView extends HTMLView
                         <input type="password" name="password" class="form-control" placeholder="Password" />
                     </div>
                     <div class="loginbox-forgot">
-                        <a href="">Olvido su contraseña?</a>
+                        <a href="' . $this->getUrl("session/reset/") . '">Olvido su contraseña?</a>
                     </div>
                     <div class="loginbox-submit">
                         <button type="button" name="loginbutton" id="loginbutton" class="btn btn-primary btn-block" >Ingresar</button>

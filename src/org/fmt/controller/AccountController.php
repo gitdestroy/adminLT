@@ -12,17 +12,17 @@ use org\fmt\view\SingUpView;
 class AccountController extends SiteController
 {    
     /**
-     * @routeAction (action="prueba")
+     * @routeAction (action="prueba",method="GET") 
      */
-    public function testAction(){
+    public function testAction($email){
         
-//        $user = UsersManager::getInstance()->getUser("yamij","1234");
+        $user = UsersManager::getInstance()->resetPassword($email);
         
-        echo "correcto!!";
+        echo $user;
     }
     
     
-     /**
+   /**
      * @routeAction (action="singup")
      */
     public function singupAction(){

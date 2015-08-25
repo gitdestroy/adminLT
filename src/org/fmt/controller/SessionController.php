@@ -6,6 +6,7 @@ use Exception;
 use NeoPHP\web\http\Response;
 use NeoPHP\web\WebController;
 use org\fmt\manager\UsersManager;
+use org\fmt\view\ForgetfulnessPasswordView;
 use stdClass;
 
 /**
@@ -63,17 +64,17 @@ class SessionController extends WebController
         return $response;
     }
     
-    /*
-     * @routeAction  (action="reset", method="PUT")
+   /**
+     * @routeAction  (action="reset",method="GET")
      */
     public function forgetfulnessPassword($email){
         
-        if ( empty($email) ) {
-            
-        }
-            
+        $view = new ForgetfulnessPasswordView();
+        if ( !empty($email) ) {
+            $view->setMessage('El email no pertenece a nuestra base de datos');
+        } 
         
-        
+        return $view;        
     }
     
     

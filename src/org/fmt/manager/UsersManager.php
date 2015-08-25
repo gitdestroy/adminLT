@@ -2,6 +2,7 @@
 
 namespace org\fmt\manager;
 
+use NeoPHP\util\mail\SMTPMailer;
 use org\fmt\model\User;
 
 class UsersManager extends MainManager
@@ -33,6 +34,24 @@ class UsersManager extends MainManager
     
     public function setUser(  User $user){
         $this->getConnection()->insertEntity($user);
+    }
+    
+    
+    public function resetPassword($email){
+        
+        $body = '';
+        
+        $userTable = $this->getConnection()->getTable("user");
+        $userTable->addWhere("username", "=", "yamij");
+        $userTable->update(['firstname'=>'Yamil']);
+        
+        $notification = new SMTPMailer();
+        $notification->addRecipient($email);
+        $notification->setFrom("\"Fuenn.com\" <notifications@fuenn.com>");
+        $notification->setSubject('Blanque de contraseña');
+        $notification->setMessage($body);
+        $notification->send();
+        return "Email enviado a {$email}";
     }
     
     

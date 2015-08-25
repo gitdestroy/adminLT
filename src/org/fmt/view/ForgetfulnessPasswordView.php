@@ -2,8 +2,13 @@
 
 namespace org\fmt\view;
 
+use NeoPHP\web\html\HTMLView;
+
 class ForgetfulnessPasswordView extends HTMLView
 {
+    
+    private $message;
+    
     protected function build()
     {
         parent::build();
@@ -73,7 +78,7 @@ class ForgetfulnessPasswordView extends HTMLView
                 $("input[name=username]").focus();
             }
 
-            $("button[name=loginbutton]").click(function(event)
+            $("button[name=resetpass]").click(function(event)
             {
                 //clearErrorMessage();
                 //disableLoginControls();
@@ -136,21 +141,62 @@ class ForgetfulnessPasswordView extends HTMLView
     
     protected function createContent()
     {
-        return '<div class="login-container animated fadeInDown">
-                <div class="loginbox bg-white">
-                    <div class="loginbox-title">Sistema Sitrack.com</div>
-                    <div class="loginbox-social">
-                        <div class="social-title ">Ingrese su email para recuperar su contraseña</div>
-                    </div>
-                    <div class="loginbox-textbox">
-                        <input type="text" id="email" name="email" class="form-control" placeholder="Email" />
-                    </div>
-                    <div class="loginbox-submit">
-                        <button type="button" name="resetpass" id="loginbutton" class="btn btn-primary btn-block" >Reset Contraseña</button>
-                    </div>
-                </div>
-                <div class="logobox">
-                </div>
-            </div>';
+        $content = '<div class="login-container animated fadeInDown">
+                    <div class="loginbox bg-white">
+                    <div class="loginbox-title">Sistema Sitrack.com</div>';
+        if ( !empty($this->message ())) {
+            
+            $content .= $this->message();
+            
+        } else {
+            $content .= '
+                        <div class="loginbox-social">
+                            <div class="social-title ">Ingrese su email para recuperar su contraseña</div>
+                        </div>
+                        <div class="loginbox-textbox">
+                            <input type="text" id="email" name="email" class="form-control" placeholder="Email" />
+                        </div>
+                        <div class="loginbox-submit">
+                            <button type="button" name="resetpass" id="loginbutton" class="btn btn-primary btn-block" >Reset Contraseña</button>
+                        </div>';
+        }
+        
+        
+        $content .= '</div>
+                </div>';
+        return $content;
     }
+    
+    protected function message(){
+        
+        $message = "";
+      if(!empty($this->message)){
+          $message = '<div class="loginbox-social"><div class="alert alert-danger">'.$this->message.'</div></div>';
+      }
+//        if(!empty($this->message)){
+//            switch (  key ( $this->message )){
+//                case "error":
+//                    $message = '<div class="alert-danger">'.$this->message.'</div>';
+//                    break;
+//                case "success":
+//                    $message = '<div class="alert-success">'.$this->message.'</div>';
+//                    break;
+//            }
+//        }
+        return $message;
+    }
+    
+    function getMessage ()
+    {
+        return $this->message;
+    }
+
+    function setMessage ( $message )
+    {
+        $this->message = $message;
+    }
+
+
+    
+    
 }
