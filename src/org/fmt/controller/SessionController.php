@@ -71,6 +71,17 @@ class SessionController extends WebController
         
         $view = new ForgetfulnessPasswordView();
         if ( !empty($email) ) {
+            
+            $hashUpdate = UsersManager::getInstance()->setUserHash($email);
+            
+            $body = '';
+            $notification = new SMTPMailer();
+            $notification->addRecipient($email);
+            $notification->setFrom("\"Fuenn.com\" <notifications@fuenn.com>");
+            $notification->setSubject('Blanque de contraseña');
+            $notification->setMessage($body);
+            $notification->send();
+            
             $view->setMessage('El email no pertenece a nuestra base de datos');
         } 
         

@@ -37,21 +37,12 @@ class UsersManager extends MainManager
     }
     
     
-    public function resetPassword($email){
-        
-        $body = '';
+    public function setUserHash($email){
         
         $userTable = $this->getConnection()->getTable("user");
-        $userTable->addWhere("username", "=", "yamij");
-        $userTable->update(['firstname'=>'Yamil']);
-        
-        $notification = new SMTPMailer();
-        $notification->addRecipient($email);
-        $notification->setFrom("\"Fuenn.com\" <notifications@fuenn.com>");
-        $notification->setSubject('Blanque de contraseña');
-        $notification->setMessage($body);
-        $notification->send();
-        return "Email enviado a {$email}";
+        $userTable->addWhere("email", "=", $email );
+        $userTable->update(['hashcode'=>hash("md5", $email)]);
+        return $userTable->getFirst(User::getClass());
     }
     
     

@@ -70,6 +70,21 @@ class User extends Model
      */
     private $countryid;
     
+     /**
+     * @column (columnName="email")
+     */
+    private $email;
+    
+     /**
+     * @column (columnName="active")
+     */
+    private $active;
+    
+     /**
+     * @column (columnName="hashcode")
+     */
+    private $hashcode;
+    
     public function getId()
     {
         return $this->id;
@@ -189,6 +204,39 @@ class User extends Model
     {
         $this->countryid = $countryid;
     }
+    
+    function getEmail ()
+    {
+        return $this->email;
+    }
+
+    function isActive ()
+    {
+        return ($this->active == 1) ? true : false;
+    }
+
+    function getHashcode ()
+    {
+        return $this->hashcode;
+    }
+
+    function setEmail ( $email )
+    {
+        $this->email = $email;
+    }
+
+    function setActive ( $active )
+    {
+        $this->active = $active;
+    }
+
+    function setHashcode ( $hashcode )
+    {
+        $this->hashcode = $hashcode;
+    }
+
+
+    
 }
 
 ?>
