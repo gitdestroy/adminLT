@@ -6,16 +6,25 @@ use NeoPHP\web\html\Tag;
 
 class MenuItem extends Tag
 {
-    private $title;
-    private $titleAtributes;
+    private $name;
     private $menu;
+    private $attributes;
     
-    public function __construct ($title,$titleAtributes, array $attributes = [])
+    public function __construct ($name, array $attributes = [])
     {
-        parent::__construct("li", $attributes);
-        $this->title = $title;
-        $this->titleAtributes = $titleAtributes;
+        parent::__construct("li", []);
+        $this->name = $name;
+        $this->attributes = $attributes;
         $this->menu = null;
+        
+        
+//        <li>
+//            <a href="font-awesome.html">
+//                <i class="menu-icon fa fa-rocket"></i>
+//                <span class="menu-text">Font Awesome</span>
+//            </a>
+//        </li>
+        
     }
     
     public function getMenu ()
@@ -27,21 +36,35 @@ class MenuItem extends Tag
     {
         $this->menu = $menu;
     }
-    
-    function getTitle ()
+    public function setHref($href)
     {
-        return $this->title;
+        $this->href = $href;
     }
-
-    function setTitle ( $title )
+    public function setIcon($icon)
     {
-        $this->title = $title;
+        $this->icon = $icon;
+    }
+    function setName ( $name )
+    {
+        $this->name = $name;
     }
     
     public function toHtml ( $offset = 0 )
     {
-        if (!empty($this->title)) {
-            $this->add (new Tag("a", $this->titleAtributes, $this->title));
+        
+        if (!empty($this->name)) {
+            $href = ['href'=>(!empty($this->href)) ? $this->href : "#"];
+            if(!empty($this->attributes)){
+                $this->attributes = array_merge($href,  $this->attributes);
+            }else{
+                $this->attributes = $href;
+            }
+            
+            $aTag = new Tag("a",$this->attributes, '<span class="menu-text">'.$this->name.'</span>');
+            if (!empty($this->icon)) {
+                $aTag->add (new Tag("i",['class'=>  $this->icon], ""));
+            }
+            $this->add($aTag);
         }
         if (!empty($this->menu)) {
             $this->add($this->menu);

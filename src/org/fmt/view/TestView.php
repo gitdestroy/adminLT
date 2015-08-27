@@ -137,10 +137,22 @@ class TestView extends DefaultView{
 
     protected function addMenu ()
     {
-        
         $menu = new Menu(['class'=>'nav sidebar-menu']);
-        $menu->addMenuItem(new MenuItem('<i class="menu-icon glyphicon glyphicon-home"></i><span class="menu-text"> Home page </span>', ['href'=>'index.html']));
-        $menu->addMenuItem(new MenuItem('<i class="menu-icon glyphicon glyphicon-trash"></i><span class="menu-text"> Dashboard </span>', ['href'=>'index.html']));
+        
+        $itemHome = new MenuItem("Home");
+        $itemHome->setHref($this->getUrl ( "/site") );
+        $itemHome->setIcon("menu-icon glyphicon glyphicon-home");
+        $menu->addMenuItem($itemHome);
+        
+        $itemAdmUser = new MenuItem("Adm. User",['class'=>'menu-dropdown']);
+        $itemAdmUser->setIcon("menu-icon glyphicon glyphicon-user");
+        
+        $menuUser = new Menu(['class'=>'submenu']);
+        $itemCreateUser = new MenuItem("Crear Usuario");         
+        $menuUser->addMenuItem($itemCreateUser);
+                
+        $itemAdmUser->setMenu($menuUser);
+        $menu->addMenuItem($itemAdmUser);
         
         return $menu;
     }
